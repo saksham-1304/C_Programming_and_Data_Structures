@@ -38,8 +38,10 @@ int DaysInMonth(enum Months month)
 int main()
 {
     int month;
-    printf("Enter the month (as a number ,0-11):\n");
-    scanf("%d", &month);
+    int month_for_user;
+    printf("Enter the month (as a number ,1-12):\n");
+    scanf("%d", &month_for_user);
+    month = month_for_user - 1;
     if (month < January || month > December)
     {
         fprintf(stderr, "Invalid month number.\n");
