@@ -153,6 +153,21 @@ int deleteAtPosition(struct node **head, int pos)
     }
     return data;
 }
+
+struct node *reverseList(struct node *head)
+{
+    struct node *prev = NULL;
+    struct node *curr = head;
+    struct node *nextt = NULL;
+    while (curr != NULL)
+    {
+        nextt = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = nextt;
+    }
+    return prev;
+}
 int main()
 {
     struct node *head;
@@ -186,5 +201,7 @@ int main()
     printf("The value deleted is %d\n", deleteAtPosition(&head, 2));
     traverse(head);
     printf("The value deleted is %d\n", deleteAtPosition(&head, 1));
+    traverse(head);
+    head=reverseList(head);
     traverse(head);
 }
