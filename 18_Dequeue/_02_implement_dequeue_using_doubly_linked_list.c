@@ -1,4 +1,4 @@
-// Implement Dequeue Using Doubly Linked List
+// Implement Dequeueue Using Doubly Linked List
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,24 +11,24 @@ typedef struct Node
     struct Node *next;
 } Node;
 
-// Deque structure
+// Dequeue structure
 typedef struct
 {
     Node *front;
     Node *rear;
-} Deque;
+} Dequeue;
 
-// Function to initialize the deque
-void initializeDeque(Deque *deque)
+// Function to initialize the dequeue
+void initializeDequeue(Dequeue *dequeue)
 {
-    deque->front = NULL;
-    deque->rear = NULL;
+    dequeue->front = NULL;
+    dequeue->rear = NULL;
 }
 
-// Function to check if the deque is empty
-int isEmpty(Deque *deque)
+// Function to check if the dequeue is empty
+int isEmpty(Dequeue *dequeue)
 {
-    return deque->front == NULL;
+    return dequeue->front == NULL;
 }
 
 // Function to create a new node
@@ -41,65 +41,65 @@ Node *createNode(int data)
     return newNode;
 }
 
-// Function to insert an element at the front of the deque
-void insertFront(Deque *deque, int data)
+// Function to insert an element at the front of the dequeue
+void insertFront(Dequeue *dequeue, int data)
 {
     Node *newNode = createNode(data);
 
-    if (isEmpty(deque))
+    if (isEmpty(dequeue))
     {
-        deque->front = newNode;
-        deque->rear = newNode;
+        dequeue->front = newNode;
+        dequeue->rear = newNode;
     }
     else
     {
-        newNode->next = deque->front;
-        deque->front->prev = newNode;
-        deque->front = newNode;
+        newNode->next = dequeue->front;
+        dequeue->front->prev = newNode;
+        dequeue->front = newNode;
     }
     printf("Inserted %d at the front\n", data);
 }
 
-// Function to insert an element at the rear of the deque
-void insertRear(Deque *deque, int data)
+// Function to insert an element at the rear of the dequeue
+void insertRear(Dequeue *dequeue, int data)
 {
     Node *newNode = createNode(data);
 
-    if (isEmpty(deque))
+    if (isEmpty(dequeue))
     {
-        deque->front = newNode;
-        deque->rear = newNode;
+        dequeue->front = newNode;
+        dequeue->rear = newNode;
     }
     else
     {
-        newNode->prev = deque->rear;
-        deque->rear->next = newNode;
-        deque->rear = newNode;
+        newNode->prev = dequeue->rear;
+        dequeue->rear->next = newNode;
+        dequeue->rear = newNode;
     }
     printf("Inserted %d at the rear\n", data);
 }
 
-// Function to delete an element from the front of the deque
-int deleteFront(Deque *deque)
+// Function to delete an element from the front of the dequeue
+int deleteFront(Dequeue *dequeue)
 {
-    if (isEmpty(deque))
+    if (isEmpty(dequeue))
     {
-        printf("Error: Deque is empty\n");
+        printf("Error: Dequeue is empty\n");
         return -1;
     }
 
-    int data = deque->front->data;
-    Node *temp = deque->front;
+    int data = dequeue->front->data;
+    Node *temp = dequeue->front;
 
-    if (deque->front == deque->rear)
+    if (dequeue->front == dequeue->rear)
     {
-        deque->front = NULL;
-        deque->rear = NULL;
+        dequeue->front = NULL;
+        dequeue->rear = NULL;
     }
     else
     {
-        deque->front = deque->front->next;
-        deque->front->prev = NULL;
+        dequeue->front = dequeue->front->next;
+        dequeue->front->prev = NULL;
     }
 
     free(temp);
@@ -107,27 +107,27 @@ int deleteFront(Deque *deque)
     return data;
 }
 
-// Function to delete an element from the rear of the deque
-int deleteRear(Deque *deque)
+// Function to delete an element from the rear of the dequeue
+int deleteRear(Dequeue *dequeue)
 {
-    if (isEmpty(deque))
+    if (isEmpty(dequeue))
     {
-        printf("Error: Deque is empty\n");
+        printf("Error: Dequeue is empty\n");
         return -1;
     }
 
-    int data = deque->rear->data;
-    Node *temp = deque->rear;
+    int data = dequeue->rear->data;
+    Node *temp = dequeue->rear;
 
-    if (deque->front == deque->rear)
+    if (dequeue->front == dequeue->rear)
     {
-        deque->front = NULL;
-        deque->rear = NULL;
+        dequeue->front = NULL;
+        dequeue->rear = NULL;
     }
     else
     {
-        deque->rear = deque->rear->prev;
-        deque->rear->next = NULL;
+        dequeue->rear = dequeue->rear->prev;
+        dequeue->rear->next = NULL;
     }
 
     free(temp);
@@ -135,17 +135,17 @@ int deleteRear(Deque *deque)
     return data;
 }
 
-// Function to display the deque from front to rear
-void display(Deque *deque)
+// Function to display the dequeue from front to rear
+void display(Dequeue *dequeue)
 {
-    if (isEmpty(deque))
+    if (isEmpty(dequeue))
     {
-        printf("Deque is empty\n");
+        printf("Dequeue is empty\n");
         return;
     }
 
-    printf("Deque (Front to Rear): ");
-    Node *temp = deque->front;
+    printf("Dequeue (Front to Rear): ");
+    Node *temp = dequeue->front;
     while (temp != NULL)
     {
         printf("%d ", temp->data);
@@ -155,23 +155,23 @@ void display(Deque *deque)
 }
 
 // Function to free the allocated memory
-void destroyDeque(Deque *deque)
+void destroyDequeue(Dequeue *dequeue)
 {
-    Node *temp = deque->front;
+    Node *temp = dequeue->front;
     while (temp != NULL)
     {
         Node *nextNode = temp->next;
         free(temp);
         temp = nextNode;
     }
-    deque->front = NULL;
-    deque->rear = NULL;
+    dequeue->front = NULL;
+    dequeue->rear = NULL;
 }
 
 int main()
 {
-    Deque deque;
-    initializeDeque(&deque);
+    Dequeue dequeue;
+    initializeDequeue(&dequeue);
     int choice, data;
 
     while (1)
@@ -191,24 +191,24 @@ int main()
         case 1:
             printf("Enter data to insert at the front: ");
             scanf("%d", &data);
-            insertFront(&deque, data);
+            insertFront(&dequeue, data);
             break;
         case 2:
             printf("Enter data to insert at the rear: ");
             scanf("%d", &data);
-            insertRear(&deque, data);
+            insertRear(&dequeue, data);
             break;
         case 3:
-            deleteFront(&deque);
+            deleteFront(&dequeue);
             break;
         case 4:
-            deleteRear(&deque);
+            deleteRear(&dequeue);
             break;
         case 5:
-            display(&deque);
+            display(&dequeue);
             break;
         case 6:
-            destroyDeque(&deque);
+            destroyDequeue(&dequeue);
             printf("Exiting...\n");
             exit(0);
             break;

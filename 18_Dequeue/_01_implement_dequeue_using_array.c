@@ -1,146 +1,146 @@
-// Implement Dequeue Using Array
+// Implement Dequeueue Using Array
 
 #include <stdio.h>
 #include <stdlib.h>
 #define SIZE 5
 
-typedef struct Deque
+typedef struct Dequeue
 {
     int arr[SIZE];
     int front;
     int rear;
-} Deque;
+} Dequeue;
 
-void initialize(Deque *deque)
+void initialize(Dequeue *dequeue)
 {
-    deque->front = -1;
-    deque->rear = -1;
+    dequeue->front = -1;
+    dequeue->rear = -1;
 }
 
-int isFull(Deque *deque)
+int isFull(Dequeue *dequeue)
 {
-    return (deque->front == 0 && deque->rear == SIZE - 1) || (deque->front == deque->rear + 1);
+    return (dequeue->front == 0 && dequeue->rear == SIZE - 1) || (dequeue->front == dequeue->rear + 1);
 }
 
-int isEmpty(Deque *deque)
+int isEmpty(Dequeue *dequeue)
 {
-    return deque->front == -1;
+    return dequeue->front == -1;
 }
 
-void insertFront(Deque *deque, int value)
+void insertFront(Dequeue *dequeue, int value)
 {
-    if (isFull(deque))
+    if (isFull(dequeue))
     {
         printf("Queue Overflow\n");
         return;
     }
 
-    if (deque->front == -1)
+    if (dequeue->front == -1)
     {
-        deque->front = 0;
-        deque->rear = 0;
+        dequeue->front = 0;
+        dequeue->rear = 0;
     }
-    else if (deque->front == 0)
+    else if (dequeue->front == 0)
     {
-        deque->front = SIZE - 1;
+        dequeue->front = SIZE - 1;
     }
     else
     {
-        deque->front = deque->front - 1;
+        dequeue->front = dequeue->front - 1;
     }
 
-    deque->arr[deque->front] = value;
+    dequeue->arr[dequeue->front] = value;
 }
 
-void insertRear(Deque *deque, int value)
+void insertRear(Dequeue *dequeue, int value)
 {
-    if (isFull(deque))
+    if (isFull(dequeue))
     {
         printf("Queue Overflow\n");
         return;
     }
 
-    if (deque->front == -1)
+    if (dequeue->front == -1)
     {
-        deque->front = 0;
-        deque->rear = 0;
+        dequeue->front = 0;
+        dequeue->rear = 0;
     }
-    else if (deque->rear == SIZE - 1)
+    else if (dequeue->rear == SIZE - 1)
     {
-        deque->rear = 0;
+        dequeue->rear = 0;
     }
     else
     {
-        deque->rear = deque->rear + 1;
+        dequeue->rear = dequeue->rear + 1;
     }
 
-    deque->arr[deque->rear] = value;
+    dequeue->arr[dequeue->rear] = value;
 }
 
-void deleteFront(Deque *deque)
+void deleteFront(Dequeue *dequeue)
 {
-    if (isEmpty(deque))
+    if (isEmpty(dequeue))
     {
         printf("Queue Underflow\n");
         return;
     }
 
-    printf("Deleted element: %d\n", deque->arr[deque->front]);
+    printf("Deleted element: %d\n", dequeue->arr[dequeue->front]);
 
-    if (deque->front == deque->rear)
+    if (dequeue->front == dequeue->rear)
     {
-        deque->front = -1;
-        deque->rear = -1;
+        dequeue->front = -1;
+        dequeue->rear = -1;
     }
-    else if (deque->front == SIZE - 1)
+    else if (dequeue->front == SIZE - 1)
     {
-        deque->front = 0;
+        dequeue->front = 0;
     }
     else
     {
-        deque->front = deque->front + 1;
+        dequeue->front = dequeue->front + 1;
     }
 }
 
-void deleteRear(Deque *deque)
+void deleteRear(Dequeue *dequeue)
 {
-    if (isEmpty(deque))
+    if (isEmpty(dequeue))
     {
         printf("Queue Underflow\n");
         return;
     }
 
-    printf("Deleted element: %d\n", deque->arr[deque->rear]);
+    printf("Deleted element: %d\n", dequeue->arr[dequeue->rear]);
 
-    if (deque->front == deque->rear)
+    if (dequeue->front == dequeue->rear)
     {
-        deque->front = -1;
-        deque->rear = -1;
+        dequeue->front = -1;
+        dequeue->rear = -1;
     }
-    else if (deque->rear == 0)
+    else if (dequeue->rear == 0)
     {
-        deque->rear = SIZE - 1;
+        dequeue->rear = SIZE - 1;
     }
     else
     {
-        deque->rear = deque->rear - 1;
+        dequeue->rear = dequeue->rear - 1;
     }
 }
 
-void display(Deque *deque)
+void display(Dequeue *dequeue)
 {
-    if (isEmpty(deque))
+    if (isEmpty(dequeue))
     {
         printf("Queue is empty\n");
         return;
     }
 
     printf("Queue elements: ");
-    int i = deque->front;
+    int i = dequeue->front;
     while (1)
     {
-        printf("%d ", deque->arr[i]);
-        if (i == deque->rear)
+        printf("%d ", dequeue->arr[i]);
+        if (i == dequeue->rear)
             break;
         i = (i + 1) % SIZE;
     }
@@ -149,13 +149,13 @@ void display(Deque *deque)
 
 int main()
 {
-    Deque deque;
-    initialize(&deque);
+    Dequeue dequeue;
+    initialize(&dequeue);
     int choice, value;
 
     while (1)
     {
-        printf("\n----- Deque Operations -----\n");
+        printf("\n----- Dequeue Operations -----\n");
         printf("1. Insert at front\n");
         printf("2. Insert at rear\n");
         printf("3. Delete from front\n");
@@ -170,21 +170,21 @@ int main()
         case 1:
             printf("Enter value to insert at front: ");
             scanf("%d", &value);
-            insertFront(&deque, value);
+            insertFront(&dequeue, value);
             break;
         case 2:
             printf("Enter value to insert at rear: ");
             scanf("%d", &value);
-            insertRear(&deque, value);
+            insertRear(&dequeue, value);
             break;
         case 3:
-            deleteFront(&deque);
+            deleteFront(&dequeue);
             break;
         case 4:
-            deleteRear(&deque);
+            deleteRear(&dequeue);
             break;
         case 5:
-            display(&deque);
+            display(&dequeue);
             break;
         case 6:
             exit(0);
