@@ -5,22 +5,22 @@ int main()
 {
     int find = 10;
     int collection[] = {3, 10, 4, 6, 7};
-
-    for (int i = 0; i < 5; i++)
+    int i;
+    for ( i = 0; i < 5; i++)
     {
         if (collection[i] == find)
         {
             break;
         }
 
-        if (i < 5)
-        {
-            printf("Found");
-        }
+    }
+    if (i < 5)
+    {
+        printf("Found");
+    }
 
-        else
-        {
-            printf("Not Found");
-        }
+    else
+    {
+        printf("Not Found");
     }
 }
